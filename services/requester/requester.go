@@ -21,7 +21,6 @@ import (
 	gethCore "github.com/onflow/go-ethereum/core"
 	"github.com/onflow/go-ethereum/core/types"
 	gethVM "github.com/onflow/go-ethereum/core/vm"
-	"github.com/onflow/go-ethereum/params"
 	"github.com/rs/zerolog"
 	"golang.org/x/sync/errgroup"
 
@@ -380,7 +379,7 @@ func (e *EVM) EstimateGas(
 	// Note that this is not actually consumed in the end.
 	// TODO: Consider moving this to `EVM.dryRun`, if we want the
 	// fix to also apply for the EVM API, on Cadence side.
-	gasConsumed := evmResult.GasConsumed + params.SstoreClearsScheduleRefundEIP3529 + 1
+	gasConsumed := evmResult.GasConsumed //+ params.SstoreSentryGasEIP2200 + 14400
 
 	e.logger.Debug().
 		Uint64("gas", gasConsumed).
