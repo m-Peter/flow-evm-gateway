@@ -329,7 +329,8 @@ func (e *EVM) Call(
 		return nil, getErrorForCode(evmResult.ErrorCode)
 	}
 
-	result := evmResult.ReturnedValue
+	//result := evmResult.ReturnedValue
+	result := evmResult.ReturnedData
 
 	e.logger.Debug().
 		Str("result", hex.EncodeToString(result)).
